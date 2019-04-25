@@ -1,6 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
+use backend\models\Companies;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -14,7 +16,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'branch_id')->textInput() ?>
 
-    <?= $form->field($model, 'companies_company_id')->textInput() ?>
+    <?php #$form->field($model, 'companies_company_id')->textInput() ?>
+
+    <?= $form->field($model, 'companies_company_id')->dropDownList(
+        ArrayHelper::map(Companies::find()->all(), 'company_id', 'company_name'),
+        ['prompt' => 'Select Company']
+
+    ) ?>
 
     <?= $form->field($model, 'branch_name')->textInput(['maxlength' => true]) ?>
 
